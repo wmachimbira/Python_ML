@@ -1,9 +1,14 @@
 # coding: utf-8
+# Program to calculate the gradient descent of a curve
+#Name : Wilton Machimbira
+
+# import matplotlib and paylab
+
 import numpy as np
 import matplotlib.pylab as plt
 from gradient_2d import numerical_gradient
 
-
+# Function to calculate the gradient descent  using 100 steps
 def gradient_descent(f, init_x, lr=0.01, step_num=100):
     x = init_x
     x_history = []
@@ -18,7 +23,7 @@ def gradient_descent(f, init_x, lr=0.01, step_num=100):
 
 
 def function_2(x):
-    return x[0]**2 + x[1]**2
+    return x[0]**2 + x[1]**2 # f(x) =(x0)^2 + (x1)^2
 
 init_x = np.array([-3.0, 4.0])    
 
@@ -34,4 +39,5 @@ plt.xlim(-3.5, 3.5)
 plt.ylim(-4.5, 4.5)
 plt.xlabel("X0")
 plt.ylabel("X1")
+("Graph showing gradient descent")
 plt.show()
