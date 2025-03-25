@@ -1,16 +1,21 @@
+# Training a simple two layer network
 # coding: utf-8
+# Wilton Machimbira
+
 import sys, os
 sys.path.append(os.pardir)
 
 import numpy as np
-from dataset.mnist import load_mnist
+from dataset.mnist import load_mnist # Improting mnist dataset
 from two_layer_net import TwoLayerNet
 
-# 데이터 읽기
+# Read data
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
+# Instantiating the two layer neural network from the imported two layer module
 network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
 
+# Number of iterations for the training data
 iters_num = 10000
 train_size = x_train.shape[0]
 batch_size = 100
@@ -27,11 +32,11 @@ for i in range(iters_num):
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
     
-    # 기울기 계산
+    # Calculate the slope
     #grad = network.numerical_gradient(x_batch, t_batch) # 수치 미분 방식
     grad = network.gradient(x_batch, t_batch) # 오차역전파법 방식(훨씬 빠르다)
     
-    # 갱신
+    # 갱신Renewal
     for key in ('W1', 'b1', 'W2', 'b2'):
         network.params[key] -= learning_rate * grad[key]
     
